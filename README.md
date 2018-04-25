@@ -1,5 +1,5 @@
-# Emerging_Technology78
-Emerging Technology Project 7 + 8
+# Emerging_Technology
+Project 7 & 8
 
 1. Clone this repository.
 ```$ git clone https://github.com/297Hacker/Emerging_Technology78```
