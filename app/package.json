@@ -2,7 +2,7 @@
   "android": {
     "v8Flags": "--expose_gc"
   },
-  "main": "main.js",
-  "name": "tns-template-drawer-navigation-ng",
+  "main": "app.js",
+  "name": "tns-template-blank-ts",
   "version": "3.4.5"
 }

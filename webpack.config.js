@@ -4,7 +4,6 @@ const webpack = require("webpack");
 const nsWebpack = require("nativescript-dev-webpack");
 const nativescriptTarget = require("nativescript-dev-webpack/nativescript-target");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { NativeScriptWorkerPlugin } = require("nativescript-worker-loader/NativeScriptWorkerPlugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
@@ -15,15 +14,14 @@ module.exports = env => {
         throw new Error("You need to provide a target platform!");
     }
     const platforms = ["ios", "android"];
-    const { snapshot, uglify, report, aot } = env;
-    const ngToolsWebpackOptions = { tsConfigPath: "tsconfig.json" };
+    const { snapshot, uglify, report } = env;
 
     const config = {
         context: resolve("./app"),
         target: nativescriptTarget,
         entry: {
-            bundle: aot ? "./main.aot.ts" : "./main.ts",
-            vendor: "./vendor",
+            bundle: `./${nsWebpack.getEntryModule()}`,
+            vendor: "./vendor"
         },
         output: {
             pathinfo: true,
@@ -58,34 +56,23 @@ module.exports = env => {
         },
         module: {
             rules: [
-                { test: /\.html$|\.xml$/, use: "raw-loader" },
+                { test: /\.(html|xml)$/, use: "raw-loader" },
 
-                // tns-core-modules reads the app.css and its imports using css-loader
                 {
-                    test: /[\/|\\]app\.css$/,
-                    use: {
-                        loader: "css-loader",
-                        options: { minimize: false, url: false },
-                    }
+                    test: /\.css$/,
+                    use: { loader: "css-loader", options: { minimize: false, url: false } }
                 },
+
                 {
-                    test: /[\/|\\]app\.scss$/,
+                    test: /\.scss$/,
                     use: [
                         { loader: "css-loader", options: { minimize: false, url: false } },
                         "sass-loader"
                     ]
                 },
 
-                // Angular components reference css files and their imports using raw-loader
-                { test: /\.css$/, exclude: /[\/|\\]app\.css$/, use: "raw-loader" },
-                { test: /\.scss$/, exclude: /[\/|\\]app\.scss$/, use: ["raw-loader", "resolve-url-loader", "sass-loader"] },
-
-                // Compile TypeScript files with ahead-of-time compiler.
-                { test: /.ts$/, use: [
-                    "nativescript-dev-webpack/moduleid-compat-loader",
-                    { loader: "@ngtools/webpack", options: ngToolsWebpackOptions },
-                ]},
-            ],
+                { test: /\.ts$/, use: "awesome-typescript-loader" }
+            ]
         },
         plugins: [
             // Vendor libs go to the vendor.js chunk
@@ -111,18 +98,11 @@ module.exports = env => {
             ]),
             // Support for web workers since v3.2
             new NativeScriptWorkerPlugin(),
-            // AngularCompilerPlugin with augmented NativeScript filesystem to handle platform specific resource resolution.
-            new nsWebpack.NativeScriptAngularCompilerPlugin(
-                Object.assign({
-                    entryModule: resolve(__dirname, "app/app.module#AppModule"),
-                    skipCodeGeneration: !aot,
-                    platformOptions: {
-                        platform,
-                        platforms,
-                        // ignore: ["App_Resources"]
-                    },
-                }, ngToolsWebpackOptions)
-            ),
+            new nsWebpack.PlatformFSPlugin({
+                platform,
+                platforms,
+                // ignore: ["App_Resources"]
+            }),
             // Does IPC communication with the {N} CLI to notify events when running in watch mode.
             new nsWebpack.WatchStateLoggerPlugin(),
         ],
