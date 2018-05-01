@@ -1,69 +1,61 @@
 import { Observable } from "data/observable";
-import { SpeechRecognition, SpeechRecognitionTranscription} from "nativescript-speech-recognition";
+import { Item } from "./shared/item";
 
 export class HomeViewModel extends Observable {
-
-    private speech: SpeechRecognition;
-    public feedback: string = "Pick a language and say something...";
-    public listening: boolean = false;
+    items: Array<Item>;
 
     constructor() {
         super();
-        this.speech = new SpeechRecognition();
+
+        this.items = new Array<Item>(
+            {
+                name: "Item 1",
+                description: "Description for Item 1"
+            },
+            {
+                name: "Item 2",
+                description: "Description for Item 2"
+            },
+            {
+                name: "Item 3",
+                description: "Description for Item 3"
+            },
+            {
+                name: "Item 4",
+                description: "Description for Item 4"
+            },
+            {
+                name: "Item 5",
+                description: "Description for Item 5"
+            },
+            {
+                name: "Item 6",
+                description: "Description for Item 6"
+            },
+            {
+                name: "Item 7",
+                description: "Description for Item 7"
+            },
+            {
+                name: "Item 8",
+                description: "Description for Item 8"
+            },
+            {
+                name: "Item 9",
+                description: "Description for Item 9"
+            },
+            {
+                name: "Item 10",
+                description: "Description for Item 10"
+            },
+            {
+                name: "Item 11",
+                description: "Description for Item 11"
+            },
+            {
+                name: "Item 12",
+                description: "Description for Item 12"
+            }
+        );
     }
-
-    public startListeningDefault(): void {
-        this.startListening();
-      }
-    
-      public startListeningNL(): void {
-        this.startListening("nl-NL");
-      }
-    
-      public startListeningEN(): void {
-        this.startListening("en-US");
-      }
-
-    public startListening(locale?: string): void {
-        let that = this;
-    
-        this.speech.available().then((avail: boolean) => {
-          if (!avail) {
-            that.set("feedback", "speech recognition not available");
-            return;
-          }
-          that.speech.startListening(
-              {
-                onResult: (transcription: SpeechRecognitionTranscription) => {
-                  that.set("feedback", transcription.text);
-                  if (transcription.finished) {
-                    that.set("listening", false);
-                  }
-                },
-                returnPartialResults: true,
-                locale: locale
-              }
-          ).then((started: boolean) => {
-            that.set("listening", true);
-          }, (errorMessage: string) => {
-            console.log(`Error while trying to start listening: ${errorMessage}`);
-          });
-        });
-      }
-
-      public stopListening(): void {
-        let that = this;
-        this.speech.stopListening().then(() => {
-          that.set("listening", false);
-        }, (errorMessage: string) => {
-          console.log(`Error while trying to stop listening: ${errorMessage}`);
-        });
-      }
-    
-      public requestPermission(): void {
-        let that = this;
-        this.speech.requestPermission().then((granted: boolean) => {
-          console.log("Granted? " + granted);
-        });
-      }
 }
