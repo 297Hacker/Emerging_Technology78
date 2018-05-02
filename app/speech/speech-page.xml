@@ -13,7 +13,10 @@
     <Button text="en-US" class="p-20" tap="{{ startListeningEN }}" visibility="{{ listening ? 'collapse' : 'visible' }}"/>
     <Button text="Stop" class="p-20" tap="{{ stopListening }}" visibility="{{ listening ? 'visible' : 'collapse' }}"/>
   </StackLayout>
+  <ScrollView>
   <Label style="border-radius: 8" class="m-10 p-15 t-15 text-center c-bg-charcoal c-white" text="{{ feedback }}" textWrap="true"/>
+    </ScrollView>
   <ActivityIndicator class="m-20" busy="{{ listening }}" visibility="{{ listening ? 'visible' : 'collapse' }}"/>
+
 </StackLayout>
 </Page>

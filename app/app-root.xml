@@ -10,7 +10,7 @@ http://docs.nativescript.org/cookbook/ui/tab-view
     </TabViewItem>
 
     <TabViewItem title="Camera">
-        <Frame defaultPage="browse/browse-page"></Frame>
+        <Frame defaultPage="camera/camera-page"></Frame>
     </TabViewItem>
 
     <TabViewItem title="Text">

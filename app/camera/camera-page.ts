@@ -1,10 +1,14 @@
 import * as observable from "tns-core-modules/data/observable";
 import * as pages from "tns-core-modules/ui/page";
-import { SpeechViewModel } from "./speech-view-model";
+import { CameraViewModel } from "./camera-view-model";
 
 // Event handler for Page 'loaded' event attached in main-page.xml
 export function pageLoaded(args: observable.EventData) {
     // Get the event sender
+
+}
+
+export function onNavigatingTo(args: observable.EventData) {
     let page = <pages.Page>args.object;
-    page.bindingContext = new SpeechViewModel();
+    page.bindingContext = new CameraViewModel();
 }

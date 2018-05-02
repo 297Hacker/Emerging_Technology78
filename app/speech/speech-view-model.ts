@@ -1,5 +1,5 @@
 import { Observable } from "data/observable";
-import { SpeechRecognition, SpeechRecognitionTranscription} from "nativescript-speech-recognition";
+import { SpeechRecognition, SpeechRecognitionTranscription } from "nativescript-speech-recognition";
 
 export class SpeechViewModel extends Observable {
 
