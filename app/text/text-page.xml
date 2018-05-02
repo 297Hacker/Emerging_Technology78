@@ -1,0 +1,20 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" loaded="pageLoaded" class="page">
+
+    <ActionBar class="action-bar">
+        <Label class="action-bar-title" text="Text to Speech"></Label>
+    </ActionBar>
+
+<StackLayout>
+     <ScrollView>
+        <Label style="border-radius: 8" class="m-10 p-15 t-15 text-center c-bg-charcoal c-white" text="{{ speakText }}" textWrap="true"/>
+    </ScrollView>
+
+   <TextField text="{{ speakText }}" hint="Type Something">
+   </TextField>
+
+   <Button tap="{{ speak }}" text="Speak"></Button>
+   <Button tap="{{ clearText }}" text="Reset"/>
+
+   
+</StackLayout>
+</Page>
