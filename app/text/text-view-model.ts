@@ -25,7 +25,12 @@ export class TextViewModel extends Observable {
         this.textToSpeech.speak(this.options);
     }
 
+    stop() {
+        this.textToSpeech.pause();
+    }
+
     clearText() {
+        this.textToSpeech.pause();
         this.set("speakText", "");
     }
 }

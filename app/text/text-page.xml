@@ -11,9 +11,12 @@
 
    <TextField text="{{ speakText }}" hint="Type Something">
    </TextField>
-
-   <Button tap="{{ speak }}" text="Speak"></Button>
-   <Button tap="{{ clearText }}" text="Reset"/>
+   
+   <StackLayout horizontalAlignment="center" orientation="horizontal">
+       <Button tap="{{ speak }}" text="Speak"/>
+       <Button tap="{{ stop }}" text="Stop"/>
+       <Button tap="{{ clearText }}" text="Reset"/>
+   </StackLayout>
 
    
 </StackLayout>
