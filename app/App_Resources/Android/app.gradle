@@ -8,7 +8,7 @@
 android {  
   defaultConfig {  
     generatedDensities = []
-    applicationId = "org.nativescript.mydrawerng"  
+    applicationId = "org.nativescript.Hear"
   }  
   aaptOptions {  
     additionalParameters "--no-version-vectors"  

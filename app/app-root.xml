@@ -1,0 +1,19 @@
+<!--
+The TabView component provides a simple way to navigate between different views by
+tapping on some of the tabs or by swiping between the views.
+Learn more about the TabView component in this documentation article:
+http://docs.nativescript.org/cookbook/ui/tab-view
+-->
+<TabView selectedIndexChanged="onSelectedIndexChanged" androidTabsPosition="bottom">
+    <TabViewItem title="Speech">
+        <Frame defaultPage="speech/speech-page"></Frame>
+    </TabViewItem>
+
+    <TabViewItem title="Camera">
+        <Frame defaultPage="camera/camera-page"></Frame>
+    </TabViewItem>
+
+    <TabViewItem title="Text">
+        <Frame defaultPage="text/text-page"></Frame>
+    </TabViewItem>
+</TabView>
