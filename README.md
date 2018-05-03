@@ -16,9 +16,16 @@ Project 7 & 8
 
 ## Don't push new features on the master branch, before you start working create your own branch!!!!
 
-# Step by setup proccess 10-20 minuten:
+# Step by step setup proccess 10-20 minuten:
 requirements nativescript moet volledig geïnstalleerd zijn, zie: [link](https://www.nativescript.org/)
-1. Install node modules.
+### Dependencies:
+<ul>
+  <li>Node.js</li>
+  <li>Nativescript core</li>
+  <li>Android SDK tools, als je android studio installeert ben je in 1 keer klaar</li>
+</ul>
+
+1. Install node modules, dit commando installeert alle dependencies die staan in package.json.
 ```npm install```
 2. Build project for the first time
 ```tns run```
