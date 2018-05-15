@@ -6,6 +6,7 @@ export class SpeechViewModel extends Observable {
     private speech: SpeechRecognition;
     public feedback: string = "Pick a language and say something...";
     public listening: boolean = false;
+    public testAI;
 
     constructor() {
         super();
