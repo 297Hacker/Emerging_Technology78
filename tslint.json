@@ -10,6 +10,7 @@
     "align":false,
     "array-type": [true, "generic"],
     "arrow-return-shorthand": true,
+    "eofline":false,
     "member-access": [false, "no-public"],
     "member-ordering":false,
     "newline-before-return": false,
