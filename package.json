@@ -11,6 +11,9 @@
     }
   },
   "scripts": {
+    "build": "tns run build",
+    "IOS": "tns run ios",
+    "android": "tns run android",
     "lint": "tslint \"app/**/*.ts\""
   },
   "dependencies": {

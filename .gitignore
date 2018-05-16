@@ -61,3 +61,6 @@ typings/
 \.vscode/
 platforms
 hooks
+*.apk
+buildscript.txt
+*.jks
